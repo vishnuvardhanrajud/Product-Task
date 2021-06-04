@@ -17,44 +17,34 @@
 <main>
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Todo's list</h1>
-         <%= search_form_for @q, url: url_for(controller: 'todo', action: 'index') do |f| %>
-  <%= f.label :title %>
-  <%= f.search_field :title %>
-  <%= f.submit %>
-<% end %>
-
-        <p class="lead text-muted">
-          <table>
-      <tr>
-        <th><%= sort_link(@q, :title, "title", default_order: :desc) %></th>
-        <th>Description</th>
-        <th>IsComplete</th>
-        <th>Action</th>
-      </tr>
-     
-
-
-
-
-
-      <% @tasks.each do |task| %>
-        <tr>
-          <td><%= task.title %></td>
-          <td><%= task.description %></td>
-          <td><%= task.isComplete %></td>
-          <td><%= link_to 'Edit', task_new_and_edit_path(:id => task.id), :class => "button btn btn-warning" %> <%= link_to "Deltete", task_delete_path(:id => task.id), method: :delete, :class => "button btn btn-danger" %></td>
-        </tr>
-      <% end %>
-    </table> </p>
-        <p>
-          
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Add New Task details<i class="fa fa-search" aria-hidden="true"></i>
-</button>
-
-          
+      <div class="col-lg-12 col-md-8 mx-auto">
+        <h1 class="fw-light">TODO LIST</h1>
+          <%= search_form_for @q, url: url_for(controller: 'todo', action: 'index') do |f| %>
+            <%= f.search_field :title, placeholder: "Search by title" %>
+            <%= f.submit %>
+          <% end %>
+          <p class="lead text-muted">
+            <table>
+              <tr>
+                <th><%= sort_link(@q, :title, "Title", default_order: :desc) %></th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+              <% @tasks.each do |task| %>
+                <tr>
+                  <td><%= task.title %></td>
+                  <td><%= task.description %></td>
+                  <td><%= task.isComplete ? "Pending..." : "Completed" %></td>
+                  <td><%= link_to 'Edit', task_new_and_edit_path(:id => task.id), :class => "button btn btn-warning" %> <%= link_to "Delete", task_delete_path(:id => task.id), method: :delete, :class => "button btn btn-danger" %></td>
+                </tr>
+              <% end %>
+            </table> 
+          </p>
+          <p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Add New Todo List<i class="fa fa-search" aria-hidden="true"></i>
+            </button>
         </p>
       </div>
     </div>
@@ -70,7 +60,7 @@
     <div class="modal-content">
     <%= form_for Todo.new, url: task_create_path do |f| %>
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Task</h5>
+        <h5 class="modal-title" id="exampleModalLabel">NEW TODO LIST</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -95,16 +85,12 @@
             <%= f.text_area :description, placeholder: "Enter the description" %>
           </div>
         </div>
-       <div class="form-group">
-        <%= f.check_box("isComplete", {}, "true", "false") %>
-          <%= f.label :isComplete, 'isComplete' %>
-        </div>
       </div>
     
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="submit" name="commit" value="Save changes" data-disable-with="Create Todo"  class="btn btn-primary">
+        <input type="submit" name="commit" value="Create Todo List" data-disable-with="Create Todo"  class="btn btn-primary">
       </div>
     <% end %>
     </div>

@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <%= form_for :task, url: (@task.id.blank? ? task_create_path : task_update_path(:id => @task.id)) do |f| %>
+    <%= form_for @task, url: (@task.id.blank? ? task_create_path : task_update_path(:id => @task.id)), method: :post do |f| %>
       <div class="row">
         <div class="col-md-12">
           <div class="col-md-6">
