@@ -1,0 +1,16 @@
+ <table>
+    <tr>
+      <th><%= sort_link(@q, :title, "Title", default_order: :desc) %></th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.isComplete ? "Completed" : "Pending" %></td>
+        <td><%= link_to 'Edit', task_new_and_edit_path(:id => task.id), remote: true, :class => "button btn btn-warning" %> <%= link_to "Delete", task_delete_path(:id => task.id), method: :delete, data: {confirm: "Are you sure you want to delete?"}, :class => "button btn btn-danger" %> <%= link_to "Complete",task_iscomplete_status_path(:id => task.id), method: :patch, remote: true, :class => "button btn btn-success #{task.isComplete ? "disabled" : ""}" %></td>
+      </tr>
+    <% end %>
+  </table> 

@@ -20,79 +20,21 @@
       <div class="col-lg-12 col-md-8 mx-auto">
         <h1 class="fw-light">TODO LIST</h1>
           <%= search_form_for @q, url: url_for(controller: 'todo', action: 'index') do |f| %>
-            <%= f.search_field :title, placeholder: "Search by title" %>
-            <%= f.submit %>
+            <%= f.label :title %>
+            <%= f.search_field :title_cont, placeholder: "Search by title" %>
+            <input type="submit" name="search" value= "Search" class="button btn btn-primary">
+            <%= link_to "Clear", request.path, class: "button btn btn-primary" %>
           <% end %>
-          <p class="lead text-muted">
-            <table>
-              <tr>
-                <th><%= sort_link(@q, :title, "Title", default_order: :desc) %></th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-              <% @tasks.each do |task| %>
-                <tr>
-                  <td><%= task.title %></td>
-                  <td><%= task.description %></td>
-                  <td><%= task.isComplete ? "Pending..." : "Completed" %></td>
-                  <td><%= link_to 'Edit', task_new_and_edit_path(:id => task.id), :class => "button btn btn-warning" %> <%= link_to "Delete", task_delete_path(:id => task.id), method: :delete, :class => "button btn btn-danger" %></td>
-                </tr>
-              <% end %>
-            </table> 
-          </p>
-          <p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Add New Todo List<i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-        </p>
+          <div class="reload_table_content">
+            <%= render "reloadtable", locals: {tasks: @tasks,q: @q} %>
+          </div>
+          <%= link_to 'ADD NEW TODO LIST', task_new_and_edit_path(:id => ""), remote: true, :class => "button btn btn-primary" %>
       </div>
     </div>
   </section>
 </main>
 
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <%= form_for Todo.new, url: task_create_path do |f| %>
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NEW TODO LIST</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        
-      <div class="row">
-        <div class="col-md-12">
-          <div class="col-md-6">
-            <%= f.label :title, "Title" %>
-          </div>
-          <div class="col-md-6">
-            <%= f.text_field :title, placeholder: "Enter the title" %>
-          </div>
-        </div>
-       
-        <div class="col-md-12">
-          <div class="col-md-6">
-            <%= f.label :description, "Description" %>
-          </div>
-          <div class="col-md-6">
-            <%= f.text_area :description, placeholder: "Enter the description" %>
-          </div>
-        </div>
-      </div>
-    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="submit" name="commit" value="Create Todo List" data-disable-with="Create Todo"  class="btn btn-primary">
-      </div>
-    <% end %>
-    </div>
-  </div>
+<div class ="appendModalContainer">
 </div>
+
+

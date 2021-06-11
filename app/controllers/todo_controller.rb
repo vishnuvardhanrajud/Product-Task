@@ -3,9 +3,9 @@ class TodoController < ApplicationController
 	def index
 		@q = Todo.ransack(params[:q])
 		if !params[:q].blank?
-		if !params[:q][:title].blank?
-			@q = Todo.ransack(params[:q][:title])
-		end
+			if !params[:q][:title].blank?
+				@q = Todo.ransack(params[:q][:title])
+			end
 		end
 		@tasks = @q.result
 	end
@@ -15,6 +15,9 @@ class TodoController < ApplicationController
 	  		@task = Todo.new
 	  	else
 	  		@task = Todo.find(params[:id])
+	  	end
+	  	respond_to do |format|
+	  		format.js
 	  	end
 	end
 
@@ -30,6 +33,17 @@ class TodoController < ApplicationController
 		@task_data.update(task_params)
   		redirect_to task_index_path
 	end
+
+	def task_update_iscomplete_status
+		@task_data = Todo.find(params[:id])
+		@task_data.update(:isComplete => true)
+		@q = Todo.ransack(params[:q])
+		@tasks = @q.result
+  		respond_to do |format|
+	  		format.js
+	  	end
+	end
+
 	#This action is task details delete
 	def task_delete
 		@task_data = Todo.find(params[:id])
