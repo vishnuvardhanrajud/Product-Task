@@ -19,12 +19,12 @@
     <div class="row py-lg-5">
       <div class="col-lg-12 col-md-8 mx-auto">
         <h1 class="fw-light">TODO LIST</h1>
-          <%= search_form_for @q, url: url_for(controller: 'todo', action: 'index') do |f| %>
+          <%= search_form_for @q, :remote => "true", url: task_search_path, :method => :get do |f| %>
             <%= f.label :title %>
             <%= f.search_field :title_cont, placeholder: "Search by title" %>
             <input type="submit" name="search" value= "Search" class="button btn btn-primary">
             <%= link_to "Clear", request.path, class: "button btn btn-primary" %>
-          <% end %>
+          <% end %>  
           <div class="reload_table_content">
             <%= render "reloadtable", locals: {tasks: @tasks,q: @q} %>
           </div>

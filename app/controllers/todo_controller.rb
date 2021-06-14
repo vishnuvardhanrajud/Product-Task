@@ -5,6 +5,14 @@ class TodoController < ApplicationController
 		@tasks = @q.result
 	end
 
+	def task_search
+		@q = Todo.ransack(params[:q])
+		@tasks = @q.result
+		respond_to do |format|
+	  		format.js {render 'common_table_reload.js.erb'}
+	  	end	
+	end
+
 	def new_and_edit_page
 		if params[:id].blank?
 	  		@task = Todo.new
@@ -35,7 +43,7 @@ class TodoController < ApplicationController
 		@q = Todo.ransack(params[:q])
 		@tasks = @q.result
   		respond_to do |format|
-	  		format.js
+	  		format.js {render 'common_table_reload.js.erb'}
 	  	end
 	end
 
@@ -45,9 +53,8 @@ class TodoController < ApplicationController
 		@task_data.destroy
 		@q = Todo.ransack(params[:q])
 		@tasks = @q.result
-		@deltasks =  @q.result
 		respond_to do |format|
-	  		format.js
+	  		format.js {render 'common_table_reload.js.erb'}
 	  	end
 	end
 

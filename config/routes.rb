@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post '/todo/:id', to: 'todo#task_update', as: "task_update"
   patch '/todo/status/:id', to: 'todo#task_update_iscomplete_status', as: "task_iscomplete_status", xhr: true
   delete '/todo/delete/:id', to: 'todo#task_delete', as: "task_delete"
+  get '/todo/search', to: 'todo#task_search', as: "task_search"
 end
