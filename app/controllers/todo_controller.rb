@@ -2,11 +2,6 @@ class TodoController < ApplicationController
 	#this action for task details displaying
 	def index
 		@q = Todo.ransack(params[:q])
-		if !params[:q].blank?
-			if !params[:q][:title].blank?
-				@q = Todo.ransack(params[:q][:title])
-			end
-		end
 		@tasks = @q.result
 	end
 
