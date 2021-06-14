@@ -43,7 +43,12 @@ class TodoController < ApplicationController
 	def task_delete
 		@task_data = Todo.find(params[:id])
 		@task_data.destroy
-		redirect_to task_index_path
+		@q = Todo.ransack(params[:q])
+		@tasks = @q.result
+		@deltasks =  @q.result
+		respond_to do |format|
+	  		format.js
+	  	end
 	end
 
 	private
