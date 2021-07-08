@@ -1,13 +1,14 @@
 class TodoController < ApplicationController
 	#this action for task details displaying
 	def index
-		@q = Todo.ransack(params[:q])
-		if !params[:q].blank?
-		if !params[:q][:title].blank?
-			@q = Todo.ransack(params[:q][:title])
-		end
-		end
-		@tasks = @q.result
+		@product_details = Product.joins(:customer, :category)
+		# @q = Todo.ransack(params[:q])
+		# if !params[:q].blank?
+		# 	if !params[:q][:title].blank?
+		# 		@q = Todo.ransack(params[:q][:title])
+		# 	end
+		# end
+		# @tasks = @q.result
 	end
 
 	def new_and_edit_page
@@ -15,6 +16,9 @@ class TodoController < ApplicationController
 	  		@task = Todo.new
 	  	else
 	  		@task = Todo.find(params[:id])
+	  	end
+	  	respond_to do |format|
+	  		format.js
 	  	end
 	end
 

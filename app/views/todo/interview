@@ -1,0 +1,150 @@
+
+
+difference between gem and plugin
+
+
+Garbage collection in ruby
+
+Interpolation in ruby
+
+lazy loading in ruby
+
+load and require
+
+ruby code blocks
+
+class libraries available in ruby
+
+Three levels of Method access control for classes
+
+procs and blocks
+
+ORM (object - relationship- Model) in rails
+
+Operators available in ruby
+
+
+What is "Yield" in ruby on rails
+
+what is mixin in rails
+
+multiple inheritance
+
+ruby regular experessions
+
+two variables @@name and @name
+
+Your mean by Render and Redirect_to
+
+What is  Rails Migration
+
+difference between active supports "HashWithIndifferent" and Ruby's "Hash"
+
+version of Ruby
+
+version of Rails
+
+Authentcation
+
+CSRF Token
+
+Association Types
+
+Each session create Separate Id
+
+Google chome opera will it Produce the same Token
+Google chrome Tab1 Tab2 will it Produce the same token
+Google chrome inCongnito will it Produce the same token
+
+self.about
+
+side kiq
+
+Elastic Search
+
+strong Typed                  Tighly Typed
+"Hello" + 3 + 7 + "10"          
+
+Hello1010 -js
+
+error - ruby
+
+
+Active Record
+
+student.find(4)
+
+student.find_by_id(4)
+
+
+Action Wire
+Action Cable
+
+Dependency Injection
+
+.blank?
+.empty?
+.present?
+
+
+reverse("This is typical sentence.") -> "This is  lacipyt .ecnetnes"
+
+Reverse the order of words with five letters or more
+
+split()
+
+join()
+
+append
+
+reverse("Reverse") -> "esreverR"
+
+
+Input [3, 4,3,5,3,6]
+Output : [3: 3, 4:1, 5:1, 6:1]
+
+NO or Occurance of Each element in the Array
+
+Ide
+
+
+muliple inheritance in ruby?
+
+ruby doesn't support multiple inheritance , but ruby make use of mixing (mixing means using module a some actions and module b some actions , module c includes both a and b then access both actions) 
+
+
+What is the use of load and require in ruby?
+
+
+
+
+Interpolating ruby:
+
+
+person = "Sachin Tendulkar";
+
+
+"i love person"
+"i love #{person}" this is interpolating
+
+# nil? can be used on any Ruby object. It returns true only if the object is nil.
+nil.nil?   # => true 
+[].nil?    # => false 
+{}.nil?    # => false
+"".nil?    # => false
+" ".nil?   # => false
+true.nil?  # => false
+
+# empty? can be used on some Ruby objects including Arrays, Hashes and Strings. It returns true only if the object's length is zero.
+nil.empty?   # NoMethodError: undefined method `empty?' for nil:NilClass
+[].empty?    # => true
+{}.empty?    # => true
+"".empty?    # => true
+" ".empty?   # => true
+true.empty?  # => NoMethodError: undefined method `empty?' for true:TrueClass
+
+# blank? is an ActiveSupport extension to Ruby Object and returns true for nil, false, empty, or a white-space string.
+[ "", " ", false, nil, [], {} ].all?(&:blank?) # => true
+
+# present? is also an ActiveSupport extension to Ruby Object and it is the negation of blank?
+[ "", " ", false, nil, [], {} ].any?(&:present?) # => false
