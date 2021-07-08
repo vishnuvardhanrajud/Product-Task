@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Todo.create!(title: 'grocery shopping', description: 'pickles, eggs, red onion')
-Todo.create!(title: 'wash the car' , description: 'KCkkkkkkkkkkkkkkkkkkkkkkkk')
-Todo.create!(title: 'register kids for school', description: 'Register Kira for Ruby Junior High and Caleb for Rails High School')
-Todo.create!(title: 'check engine light', description: 'The check engine light is on in the Tacoma')
-Todo.create!(title: 'dog groomers', description: 'Take Pinky and Redford to the groomers on Wednesday the 23rd')
+Todo.create!(title: 'Manager Meeting', description: 'Regarding team status update')
+Todo.create!(title: 'Project Planning' , description: 'Discussion with team members regarding new project')
+Todo.create!(title: 'Team Performance', description: 'Evaluating the team performance')
+Todo.create!(title: 'Training Session', description: 'Conduct training sessions for marketing people')
+Todo.create!(title: 'Application Demo', description: 'Application Demo for the interns')

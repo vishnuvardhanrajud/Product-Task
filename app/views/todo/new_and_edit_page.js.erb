@@ -1,16 +1,3 @@
 
-$('body').append('<%= j render "testModal", todo: @todo %>');
-$('#exampleModal').modal('show'); 
-
-$('#exampleModal').on('hidden.bs.modal', function () {
-  $(this).remove();
-});
-
-
-$(".testing").off("ajax:send").on("ajax:send", function(xhr){
-
-}).off("ajax:success").on("ajax:success", function(event,xhr,data,status){
-
-}).off("ajax:failure").on("ajax:failure", function(event,xhr,data,status){
-
-})
+$('.appendModalContainer').html("<%= j render('todoaddeditmodal',todo: @todo) %>")
+$('#exampleModal').modal("show")

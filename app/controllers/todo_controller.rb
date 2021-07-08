@@ -11,6 +11,14 @@ class TodoController < ApplicationController
 		# @tasks = @q.result
 	end
 
+	def task_search
+		@q = Todo.ransack(params[:q])
+		@tasks = @q.result
+		respond_to do |format|
+	  		format.js {render 'common_table_reload.js.erb'}
+	  	end	
+	end
+
 	def new_and_edit_page
 		if params[:id].blank?
 	  		@task = Todo.new
@@ -34,11 +42,26 @@ class TodoController < ApplicationController
 		@task_data.update(task_params)
   		redirect_to task_index_path
 	end
+
+	def task_update_iscomplete_status
+		@task_data = Todo.find(params[:id])
+		@task_data.update(:isComplete => true)
+		@q = Todo.ransack(params[:q])
+		@tasks = @q.result
+  		respond_to do |format|
+	  		format.js {render 'common_table_reload.js.erb'}
+	  	end
+	end
+
 	#This action is task details delete
 	def task_delete
 		@task_data = Todo.find(params[:id])
 		@task_data.destroy
-		redirect_to task_index_path
+		@q = Todo.ransack(params[:q])
+		@tasks = @q.result
+		respond_to do |format|
+	  		format.js {render 'common_table_reload.js.erb'}
+	  	end
 	end
 
 	private
