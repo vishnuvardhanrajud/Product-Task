@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
+   root to: "product#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '/todo/index', to: 'todo#index', as:"task_index"
-  get '/todo/new_and_edit', to: 'todo#new_and_edit_page', as:"task_new_and_edit"
-  get '/todo/new', to: 'todo#new', as:"new"
-  post '/todo/create', to: 'todo#task_create', as:"task_create"
-  post '/todo/:id', to: 'todo#task_update', as: "task_update"
-  patch '/todo/status/:id', to: 'todo#task_update_iscomplete_status', as: "task_iscomplete_status", xhr: true
-  delete '/todo/delete/:id', to: 'todo#task_delete', as: "task_delete"
-  get '/todo/search', to: 'todo#task_search', as: "task_search"
+  get '/product/index', to: 'product#index', as:"product_index"
+  get '/product/new_and_edit', to: 'product#new_and_edit_page', as:"product_new_and_edit"
+  post '/product/create', to: 'product#product_create', as:"product_create"
+  post '/product/:id', to: 'product#product_update', as: "product_update"
+  delete '/product/delete/:id', to: 'product#product_delete', as: "product_delete"
 end

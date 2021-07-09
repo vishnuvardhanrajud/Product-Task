@@ -1,0 +1,49 @@
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <%= form_for @task, url: (@task.id.blank? ? product_create_path : product_update_path(:id => @task.id)), method: :post, remote: true do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title"> <%= (@task.id.blank? ? "NEW PRODUCT" : "EDIT PRODUCT") %></h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <%= f.label :product_title, "Product Title" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :product_title, placeholder: "Enter the product title", required: true %>
+          </div>
+        </div>
+       
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <%= label_tag :customer_name, "Customer Name" %>
+          </div>
+          <div class="col-md-6">
+            <%= text_field_tag :customer_name, "#{f.object.customer.blank? ? "" : f.object.customer.customer_name}", placeholder: "Enter the Customer Name", required: true %>
+          </div>
+        </div>
+
+         <div class="col-md-12">
+          <div class="col-md-6">
+            <%= label_tag :category_name, "category Name" %>
+          </div>
+          <div class="col-md-6">
+            <%= text_field_tag :category_name, "#{f.object.category.blank? ? "" : f.object.category.category_name}", placeholder: "Enter the category Name", required: true %>
+          </div>
+        </div>
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" name="commit" value= "<%= (@task.id.blank? ? "CREATE PRODUCT" : "UPDATE PRODUCT") %>" data-disable-with="wait.."  class="btn btn-primary">
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

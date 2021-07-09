@@ -1,21 +1,15 @@
 
-console.log("testing")
 
 
-function dosmth() { 
-  alert('hello'); 
-}
+
 
 document.addEventListener('turbolinks:load', () => {  
 
-	$(function() {
-	    $('.product_table').pagination({
-	        items: 100,
-	        itemsOnPage: 10,
-	        cssStyle: 'light-theme'
-	    });
-	});
-  const clickButton = document.getElementById("button-click");  
 
-  clickButton.addEventListener("click", dosmth); 
+  // const clickButton = document.getElementById("button_click");  
+
+  // clickButton.addEventListener("click", dosmth); 
+  $('.select_change').off("change").on("change", function(){
+  	$('.button_click').trigger("click")
+  });
 });

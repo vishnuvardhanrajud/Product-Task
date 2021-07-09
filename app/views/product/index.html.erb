@@ -1,0 +1,40 @@
+
+<main>
+  <div class="form-row col-md-6">
+    <h5><strong>This is My first project</strong></h5>
+    <%= form_tag(product_index_path, method: "get", class: "formsub input-group") do %>
+      <div class='input-group'>
+      <%= select_tag :status, options_for_select(['Recent Product', 'Category Name', 'Customer Name', 'Product Title']), {class: "form-control select_change"} %>
+        <div class='input-group-btn'>
+          <%= submit_tag "Filter by Status", name: nil, class: 'btn btn-primary button_click hide' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group col-md-12">
+      <table class="table table-bordered center ">
+        <tr>
+          <th>Product Title</th>
+          <th>Customer Name</th>
+          <th>Category Name</th>
+          <th>Actions</th>
+        </tr>
+        <% @product_details.each do |task| %>
+          <tr>
+            <td><%= task.product_title %></td>
+            <td><%= task.customer.customer_name %></td>
+            <td><%= task.category.category_name %></td>
+            <td><%= link_to 'Edit', product_new_and_edit_path(:id => task.id), remote: true, :class => "button btn btn-warning" %> <%= link_to "Delete", product_delete_path(:id => task.id), method: :delete, remote: true, data: {confirm: "Are you sure you want to delete?"}, :class => "button btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </table> 
+      <div class="form-group col-md-6 ">
+        <%= will_paginate @product_details %>
+         <%= link_to 'Create New Product', product_new_and_edit_path(:id => ""), remote: true, :class => "button btn btn-primary" %>
+        
+      </div>
+    </div>
+  </div>         
+</main>
+
+<div class ="appendModalContainer">
+</div>

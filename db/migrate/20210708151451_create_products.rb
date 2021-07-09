@@ -4,7 +4,6 @@ class CreateProducts < ActiveRecord::Migration[6.1]
     	t.integer :customer_id
     	t.integer :category_id
     	t.string :product_title
-    	t.string :recent_product
       t.timestamps
     end
     add_foreign_key :products, :customers, column: :customer_id
