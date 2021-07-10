@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(version: 2021_07_09_173555) do
     t.integer "customer_id"
     t.integer "category_id"
     t.string "product_title"
-    t.string "recent_product"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "todos", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.boolean "isComplete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

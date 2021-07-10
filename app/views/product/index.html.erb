@@ -4,7 +4,7 @@
     <h5><strong>This is My first project</strong></h5>
     <%= form_tag(product_index_path, method: "get", class: "formsub input-group") do %>
       <div class='input-group'>
-      <%= select_tag :status, options_for_select(['Recent Product', 'Category Name', 'Customer Name', 'Product Title']), {class: "form-control select_change"} %>
+      <%= select_tag :status, options_for_select(['Recent Product', 'Category Name', 'Customer Name', 'Product Title'], @product_select), {class: "form-control select_change"} %>
         <div class='input-group-btn'>
           <%= submit_tag "Filter by Status", name: nil, class: 'btn btn-primary button_click hide' %>
         </div>
