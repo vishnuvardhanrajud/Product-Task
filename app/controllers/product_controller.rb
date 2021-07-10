@@ -3,12 +3,16 @@ class ProductController < ApplicationController
 	#this action for displaying product details
 	def index
 		if params[:status] == "Product Title"
+			@product_select = params[:status]
 			order_condition = "products.product_title"
 		elsif params[:status] == "Customer Name"
+			@product_select = params[:status]
 			order_condition = "customers.customer_name"
 		elsif params[:status] == "Category Name"
+			@product_select = params[:status]
 			order_condition = "categories.category_name"
 		else
+			@product_select = "Recent Product"
 			order_condition = "products.created_at DESC"
 		end
 
